@@ -9,6 +9,9 @@ class SignUp extends Component {
     super()
 
     this.state = {
+      firstName:'',
+      lastName:'',
+      age:'',
       email: '',
       password: '',
       passwordConfirmation: ''
@@ -37,11 +40,44 @@ class SignUp extends Component {
   }
 
   render () {
-    const { email, password, passwordConfirmation } = this.state
+    const {firstName,lastName,age, email, password, passwordConfirmation } = this.state
 
     return (
       <form className='auth-form' onSubmit={this.onSignUp}>
         <h3>Sign Up</h3>
+
+
+        <label htmlFor="firstName">First Name</label>
+        <input
+          required
+          name="firstName"
+          value={firstName}
+          type="firstName"
+          placeholder="First Name"
+          onChange={this.handleChange}
+        />
+
+
+<label htmlFor="lastName">Last Name</label>
+        <input
+          required
+          name="lastName"
+          value={lastName}
+          type="lastName"
+          placeholder="Last Name"
+          onChange={this.handleChange}
+        />
+
+
+<label htmlFor="age">Age</label>
+        <input
+          required
+          name="age"
+          value={age}
+          type="age"
+          placeholder="Age"
+          onChange={this.handleChange}
+        />
 
         <label htmlFor="email">Email</label>
         <input
