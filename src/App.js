@@ -9,6 +9,8 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
+import CreateEvent from './auth/components/createEvent'
+import ListEvent from './auth/components/listEvent'
 
 class App extends Component {
   constructor () {
@@ -38,6 +40,14 @@ class App extends Component {
           <AlertDismissible key={index} variant={alert.type} message={alert.message} />
         ))}
         <main className="container">
+        <Route path='/' render={() => (
+            <CreateEvent alert={this.alert} setUser={this.setUser} />
+          )} />
+
+        <Route path='/listEvent' render={() => (
+            <ListEvent alert={this.alert} setUser={this.setUser} />
+          )} />
+
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />
