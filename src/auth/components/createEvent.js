@@ -1,98 +1,82 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { HashRouter } from 'react-router-dom';
+// import ReactDOM from "react-dom";
+// import { HashRouter } from 'react-router-dom';
 import axios from "axios";
-import DatePicker from 'react-datepicker';
-
+// import DatePicker from 'react-datepicker';
+import {Form, Button} from 'react-bootstrap';
+import { createEvent } from "../api";
 
 export default class CreateEvent extends React.Component{
 
     constructor(props){
         super(props)
         this.state = {
-        // orgnizer:'',
+        
         eventName:'',
         discription:'',
         when:''
         }
+
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
-    onChangeEventName(e){
-        console.log('eventName');
-        this.setState({eventName: e.target.value});
+    onChange(e){
+        this.setState({[e.target.name]: e.target.value});
     }
 
+//     onChangeEventName(e){
+//         console.log('eventName');
+//         this.setState({eventName: e.target.value});
+//     }
 
-    onChangeDiscription(e){
-        console.log("discription");
-        this.setState({discription:e.target.value});
-    }
 
-   onChangeWhen(e){
-       console.log('pick time');
-       this.setState({when:e.target.value});
+//     onChangeDiscription(e){
+//         console.log("discription");
+//         this.setState({discription:e.target.value});
+//     }
 
-   }
+//    onChangeWhen(e){
+//        console.log('pick time');
+//        this.setState({when:e.target.value});
+
+//    }
 
    onSubmit(e){
-       e.preventDefault()
 
-       fetch('http://localhost:7165/api/events/createEvent')
-       .then(res=> console.log(res.data));
+            createEvent(this.props.user).then((res) => console.log(res)
+            )
+    }
 
-       this.setState({
-        // orgnizer:'',
-        eventName:'',
-        discription:'',
-        when:() => {
-            const [startDate, setStartDate] = React.useState(
-              setHours(setMinutes(new Date(), 30), 16)
-            );
-            return (
-            //   <DatePicker
-            //     selected={startDate}
-            //     onChange={date => setStartDate(date)}
-            //     maxDate={addDays(new Date(), 5)}
-            //     showTimeSelect
-            //     excludeTimes={[
-            //       setHours(setMinutes(new Date(), 0), 17),
-            //       setHours(setMinutes(new Date(), 30), 18),
-            //       setHours(setMinutes(new Date(), 30), 19),
-            //       setHours(setMinutes(new Date(), 30), 17)
-            //     ]}
-            //     dateFormat="MMMM d, yyyy h:mm aa"
-            //   />
-            <h1>time</h1>
-            );
-          }
-       })
-   }
+   
     render(){
+        console.log(this.props);
+        
         return(
 
-    // <div className="form-wrapper">
-    //   <Form onSubmit={this.onSubmit}>
-    //     <Form.Group controlId="Name">
-    //       <Form.Label>Name Event</Form.Label>
-    //       <Form.Control type="text" value={this.state.eventName} onChange={this.onChangeEventName} />
-    //     </Form.Group>
+    <div className="form-wrapper">
+      <Form onSubmit={this.onSubmit}>
+        <Form.Group controlId="Name">
+          <Form.Label>Name Event</Form.Label>
+          <Form.Control name= "eventName" type="text" value={this.state.eventName} onChange={this.onChange} />
+        </Form.Group>
 
-    //     <Form.Group controlId="Name">
-    //       <Form.Label>Discription</Form.Label>
-    //       <Form.Control type="text" value={this.state.discription} onChange={this.onChangeDiscription} />
-    //     </Form.Group>
+        <Form.Group controlId="Name">
+          <Form.Label>Discription</Form.Label>
+          <Form.Control name="discription" type="text" value={this.state.discription} onChange={this.onChange} />
+        </Form.Group>
 
-    //     <Form.Group controlId="Name">
-    //       <Form.Label>When</Form.Label>
-    //       <Form.Control type="date/time" value={this.state.when} onChange={this.onChangeWhen} />
-    //     </Form.Group>
+        <Form.Group controlId="Name">
+          <Form.Label>When</Form.Label>
+          <Form.Control name="when" type="date/time" value={this.state.when} onChange={this.onChange} />
+        </Form.Group>
 
-    //     <Button variant="danger" size="lg" block="block" type="submit">
-    //       Create New EVENtOS
-    //     </Button>
-    //   </Form>
-    // </div>
-    <h1>work</h1>
+        <Button variant="danger" size="lg" block="block" type="submit">
+          Create New EVENtOS
+        </Button>
+      </Form>
+    </div>
+    
         )
     }
 }
