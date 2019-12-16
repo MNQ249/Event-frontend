@@ -23,6 +23,12 @@ const alwaysOptions = (
   </React.Fragment>
 )
 
+// const createEventOption = (
+//   <React.Fragment>
+//     <Link to="/"> </Link>
+//   </React.Fragment>
+// )
+
 const Header = ({ user }) => (
   <header className="main-header">
     <h1>EVENtOS</h1>
