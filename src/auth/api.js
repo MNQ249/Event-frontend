@@ -59,3 +59,50 @@ export const changePassword = (passwords, user) => {
   })
 }
 
+
+
+//event
+
+//create new event and send it to database
+export const createEvent = (user)=>{
+  return axios({
+    url: apiUrl + '/events/createEvent',
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${user.token}` // FOR EXPRESS
+      // 'Authorization': `Token ${user.token}` // FOR RAILS
+    },
+    data: {
+      event: {
+        eventName:'' ,
+        discription: '',
+        when:''
+      }
+    }
+  })
+}
+
+// get all list events from database
+export const showListEvent = ()=>{
+  return axios({
+    url: apiUrl + '/events',
+    method: 'GET',
+    
+  })
+}
+
+// delete event by id event from database
+export const deleteEvent = ()=>{
+  return axios({
+    url:apiUrl + '/event/:id',
+    method: 'DELETE',
+  })
+}
+
+// update or edit by id from database
+export const updateEvent = ()=>{
+  return axios({
+    url:apiUrl + '/event/id',
+    method: 'PATCH',
+  })
+}
