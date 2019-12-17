@@ -23,6 +23,12 @@ const alwaysOptions = (
   </React.Fragment>
 )
 
+const createEvent = (
+  <React.Fragment>
+  <Link to="/createEvent">Create Event</Link>
+</React.Fragment>
+)
+
 const listEvent = (
   <React.Fragment>
   <Link to="/listEvent">List Event</Link>
@@ -36,6 +42,7 @@ const Header = ({ user }) => (
       { user && <span>Welcome, {user.email}</span>}
       { user ? authenticatedOptions : unauthenticatedOptions }
       { alwaysOptions }
+      {createEvent}
       {listEvent}
     </nav>
   </header>
