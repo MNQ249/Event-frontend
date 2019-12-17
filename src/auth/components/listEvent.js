@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {Modal, Button} from 'react-bootstrap';
-import {showListEvent,updateEvent} from "../api";
+import {showListEvent,updateEvent,deleteEvent} from "../api";
+import ItemEvent from './ItemEvent';
 
 export default class ListEvent extends  React.Component{
 
@@ -13,58 +14,87 @@ export default class ListEvent extends  React.Component{
         event:''
         }
     }
-
+    
     componentDidMount(){
+        {console.log(this.props)}
         showListEvent()
         .then((res)=>{
-
-            
-            this.setState({listEvent: res.data.events})
+            // listEvent with assign to array events
+            this.setState({listEvent: [...res.data.events]})
         })
         .catch((error) => {
             console.log(error);
           });
 
+          // method make update event by id
+        //   updateEvent()
+        //   .then((res)=>{
+        //     this.setState({event:res.data.event})
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
 
-          updateEvent()
-          .then((res)=>{
-            this.setState({event:res.data.events})
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+
     }
+    //method make delete event for by id
+    deleteItem= (id, user) => {
+      deleteEvent(id, user)
+    .then((res)=>{
+      const newEventList = this.props.events.filter((event) => {
+          return event._id !== id;
+       
+    });
 
-    
+    this.setEvent({newEventList});
+    })
+    .catch((error) => {
+      console.log(error);
+      });
+  }
 
 
+  //method make update for event by id
+  updateItem= (id, user) => {
+    updateEvent(id, user)
+  .then((res)=>{
+    const newEventList = this.props.events.filter((event) => {
+        return event._id !== id;
+     
+  });
 
+  this.setEvent({newEventList});
+  })
+  .catch((error) => {
+    console.log(error);
+    });
+}
 
     render(){
-        console.log(this.state);
-        let doDelete;
+        console.log("list events: ",this.state.listEvent);
         const lolist = this.state.listEvent.map((item,key)=>{
-            return <li key={item.id}>{item.name} </li>;
-
-           
+            // return <li key={item.id}>{item.name} </li>;
+            return <li><ItemEvent eventName={item.eventName}
+                              id={item._id}
+                              when={item.when}
+                              discription={item.discription}
+                              delete={this.deleteItem}
+                              update={this.updateItem}
+                              key={key}
+                              user={this.props.user}
+                            
+            /></li>;
         })
         return(     
-        <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-            <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1"><ul>{lolist}</ul></h5>
-            <button type="button" class="btn btn-warning" >Edit</button>
-            <button type="button" class=" btn-danger">Delete</button>
-            <small>3 days ago</small>
+        <div className="list-group">
+            <h1>Event List</h1>
+            <a href="#" className="list-group-item list-group-item-action flex-column align-items-start active">
+            <div className="d-flex w-100 justify-content-between">
+            <h1 className="mb-1"><ul>{lolist}</ul></h1>
             </div>
-            </a>
+            </a>        
         </div>
 
-
-// {/* <ul class="list-group">
-//   <li class="list-group-item">{lolist}</li>
- 
-// </ul> */}
         )
     }
 
