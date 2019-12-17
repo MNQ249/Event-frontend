@@ -61,10 +61,10 @@ export const changePassword = (passwords, user) => {
 
 
 
-//event
+//event api
 
 //create new event and send it to database
-export const createEvent = (user)=>{
+export const createEvent = (user, event)=>{
   return axios({
     url: apiUrl + '/events/createEvent',
     method: 'POST',
@@ -74,9 +74,9 @@ export const createEvent = (user)=>{
     },
     data: {
       event: {
-        eventName:'' ,
-        discription: '',
-        when:''
+        eventName: event.eventName,
+        description: event.discription,
+        when: event.when
       }
     }
   })
@@ -87,22 +87,37 @@ export const showListEvent = ()=>{
   return axios({
     url: apiUrl + '/events',
     method: 'GET',
-    
   })
 }
 
 // delete event by id event from database
-export const deleteEvent = ()=>{
+export const deleteEvent = (id, user)=>{
+  console.log(id)
   return axios({
-    url:apiUrl + '/event/:id',
+    url:apiUrl + `/events/delete/${id}`,
     method: 'DELETE',
+    headers: {
+      'Authorization': `Bearer ${user.token}` // FOR EXPRESS
+      // 'Authorization': `Token ${user.token}` // FOR RAILS
+    },
   })
 }
 
 // update or edit by id from database
-export const updateEvent = ()=>{
+export const updateEvent = (id,user)=>{
   return axios({
-    url:apiUrl + '/event/id',
+    url:apiUrl + `/events/update/${id}`,
     method: 'PATCH',
+    headers: {
+      'Authorization': `Bearer ${user.token} ${id}` // FOR EXPRESS
+      // 'Authorization': `Token ${user.token}` // FOR RAILS
+    },
+    data: {
+      event: {
+        eventName:event.eventName ,
+        discription:event.discription,
+        when:event.when
+      }
+    }
   })
 }
