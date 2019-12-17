@@ -5,25 +5,46 @@ import axios from "axios";
 // import DatePicker from 'react-datepicker';
 import {Form, Button} from 'react-bootstrap';
 import { createEvent } from "../api";
+// import ListEvent from "./listEvent";
+
 
 export default class CreateEvent extends React.Component{
 
     constructor(props){
         super(props)
         this.state = {
-        
-        eventName:'',
-        discription:'',
-        when:''
+        listEvent:[],
+      
+          eventName:'',
+          discription:'',
+          when:''
+      
         }
 
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
+
+
     onChange(e){
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({
+          [e.target.name]: e.target.value
+        });
     }
+
+
+    // addEvent = (e) => {
+
+    //   console.log('add Event');
+    //   this.setState({
+    //     listEvent: [...this.state.listEvent, this.state.newEvent],
+    //     newEvent: '',
+    //   });
+    // }
+
+
+
 
 //     onChangeEventName(e){
 //         console.log('eventName');
@@ -43,15 +64,15 @@ export default class CreateEvent extends React.Component{
 //    }
 
    onSubmit(e){
+     e.preventDefault();
 
-            createEvent(this.props.user).then((res) => console.log(res)
+            createEvent(this.props.user, this.state).then((res) => console.log(res)
             )
     }
 
    
     render(){
-        console.log(this.props);
-        
+        console.log(this.state);
         return(
 
     <div className="form-wrapper">
