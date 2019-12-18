@@ -11,14 +11,16 @@ import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
 import CreateEvent from './auth/components/CreateEvent'
 import ListEvent from './auth/components/ListEvent'
-
+import EditEvent from './auth/components/EditEvent'
+import Home from './auth/components/Home'
 class App extends Component {
-  constructor () {
+  constructor() {
     super()
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      currentEvent: null
     }
   }
 
@@ -26,12 +28,13 @@ class App extends Component {
 
   clearUser = () => this.setState({ user: null })
 
+  setCurrentEvent = async currentEvent => await this.setState({ currentEvent });
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
 
-  render () {
-    const { alerts, user } = this.state
+  render() {
+    const { alerts, user, currentEvent } = this.state
 
     return (
       <React.Fragment>
@@ -41,16 +44,24 @@ class App extends Component {
         ))}
         <main className="container">
 
-        <Route exact path='/'  render={() => (
-            <SignUp alert={this.alert} setUser={this.setUser} />
+          <Route exact path='/' render={() => (
+            // <SignUp alert={this.alert} setUser={this.setUser} />
+            <Home />
           )} />
 
-        <Route user={user}  path='/createEvent'  render={() => (
-            <CreateEvent alert={this.alert} setUser={this.setUser} user ={user} />
+          <Route user={user} path='/createEvent' render={() => (
+            <CreateEvent alert={this.alert} setUser={this.setUser} user={user} />
           )} />
 
-        <Route  path='/listEvent' render={() => (
-            <ListEvent alert={this.alert} setUser={this.setUser} user = {user}/>
+          <Route path='/listEvent' render={() => (
+            <ListEvent alert={this.alert} setUser={this.setUser} user={user} setCurrentEvent={this.setCurrentEvent} />
+          )} />
+          <AuthenticatedRoute user={user} path='/editEvent' render={() => (
+            <EditEvent alert={this.alert} setUser={this.setUser} user={user} event={currentEvent} />
+          )} />
+
+            <AuthenticatedRoute user={user} path='/deleteEvent' render={() => (
+            <EditEvent alert={this.alert} setUser={this.setUser} user={user} event={currentEvent} />
           )} />
 
           <Route path='/sign-up' render={() => (

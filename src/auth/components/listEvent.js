@@ -26,16 +26,6 @@ export default class ListEvent extends  React.Component{
             console.log(error);
           });
 
-          // method make update event by id
-        //   updateEvent()
-        //   .then((res)=>{
-        //     this.setState({event:res.data.event})
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
-
-
     }
     //method make delete event for by id
     deleteItem= (id, user) => {
@@ -46,7 +36,7 @@ export default class ListEvent extends  React.Component{
        
     });
 
-    this.setEvent({newEventList});
+     this.setEvent({newEventList});
     })
     .catch((error) => {
       console.log(error);
@@ -64,6 +54,7 @@ export default class ListEvent extends  React.Component{
   });
 
   this.setEvent({newEventList});
+  
   })
   .catch((error) => {
     console.log(error);
@@ -71,20 +62,24 @@ export default class ListEvent extends  React.Component{
 }
 
     render(){
+        
         console.log("list events: ",this.state.listEvent);
         const lolist = this.state.listEvent.map((item,key)=>{
             // return <li key={item.id}>{item.name} </li>;
             return <li><ItemEvent eventName={item.eventName}
                               id={item._id}
                               when={item.when}
-                              discription={item.discription}
+                              description={item.description}
                               delete={this.deleteItem}
                               update={this.updateItem}
                               key={key}
                               user={this.props.user}
+                              setCurrentEvent={this.props.setCurrentEvent}
                             
             /></li>;
         })
+        
+    
         return(     
         <div className="list-group">
             <h1>Event List</h1>

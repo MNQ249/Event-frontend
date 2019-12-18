@@ -104,20 +104,17 @@ export const deleteEvent = (id, user)=>{
 }
 
 // update or edit by id from database
-export const updateEvent = (id,user)=>{
+export const updateEvent = (event,user)=>{
+  console.log(event.id);
   return axios({
-    url:apiUrl + `/events/update/${id}`,
+    url:apiUrl + `/events/update/${event.id}`,
     method: 'PATCH',
     headers: {
-      'Authorization': `Bearer ${user.token} ${id}` // FOR EXPRESS
+      'Authorization': `Bearer ${user.token}` // FOR EXPRESS
       // 'Authorization': `Token ${user.token}` // FOR RAILS
     },
     data: {
-      event: {
-        eventName:event.eventName ,
-        discription:event.discription,
-        when:event.when
-      }
+      event: event
     }
   })
 }

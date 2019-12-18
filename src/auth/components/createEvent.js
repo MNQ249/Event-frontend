@@ -33,36 +33,6 @@ export default class CreateEvent extends React.Component{
         });
     }
 
-
-    // addEvent = (e) => {
-
-    //   console.log('add Event');
-    //   this.setState({
-    //     listEvent: [...this.state.listEvent, this.state.newEvent],
-    //     newEvent: '',
-    //   });
-    // }
-
-
-
-
-//     onChangeEventName(e){
-//         console.log('eventName');
-//         this.setState({eventName: e.target.value});
-//     }
-
-
-//     onChangeDiscription(e){
-//         console.log("discription");
-//         this.setState({discription:e.target.value});
-//     }
-
-//    onChangeWhen(e){
-//        console.log('pick time');
-//        this.setState({when:e.target.value});
-
-//    }
-
    onSubmit(e){
      e.preventDefault();
 
