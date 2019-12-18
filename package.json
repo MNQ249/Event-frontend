@@ -1,6 +1,6 @@
 {
   "name": "event",
-  "homepage": "https://github.com/MNQ249/event-frontend.git",
+  "homepage":  "http://MNQ249.github.io/event-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
