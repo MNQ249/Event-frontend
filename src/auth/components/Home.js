@@ -32,33 +32,45 @@ setDirection = direction => this.setState({direction});
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Celebrations</h3>
+            <p>Celebration will start in Thursday.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=Second slide&bg=282c34"
+            src="http://saudigazette.com.sa/uploads/images/2019/11/24/1429339.jpg"
+            alt="four slide"
+          />
+          <Carousel.Caption>
+            <h3>Sporting</h3>
+            <p>Booking your favorite team.</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://images.unsplash.com/photo-1566413358759-0b36d585f04a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80"
             alt="Second slide"
           />
   
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>ِConferences and Seminars</h3>
+            <p>There are lots of different types of academic event that you might want to attend.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src="holder.js/800x400?text=Third slide&bg=20232a"
+            src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80"
             alt="Third slide"
           />
   
           <Carousel.Caption>
-            <h3>Third slide label</h3>
+            <h3>Art</h3>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            Start your ambition with drawing.
             </p>
           </Carousel.Caption>
         </Carousel.Item>

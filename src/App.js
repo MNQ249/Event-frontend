@@ -49,7 +49,7 @@ class App extends Component {
             <Home />
           )} />
 
-          <Route user={user} path='/createEvent' render={() => (
+          <AuthenticatedRoute user={user} path='/createEvent' render={() => (
             <CreateEvent alert={this.alert} setUser={this.setUser} user={user} />
           )} />
 
